@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.ViewModels;
+using Engine;
 
-namespace SimpleRPG
+namespace Engine.Models
 {
     public class LivingCreature
     {
-        public int CurrentHitPoints { get; set; }
+        public int HitPoints { get; set; }
         public int MaximumHitPoints { get; set; }
 
-        public LivingCreature(int currentHitPoints, int maximumHitPoints)
+        public LivingCreature(int hitPoints, int maximumHitPoints)
         {
-            CurrentHitPoints = currentHitPoints;
+            HitPoints = hitPoints;
             MaximumHitPoints = maximumHitPoints;
         }        
     }

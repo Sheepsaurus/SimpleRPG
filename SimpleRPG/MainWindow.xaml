@@ -3,20 +3,91 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
         Title="Adventure Game" Height="686" Width="735">
     <Grid>
-        <Label Content="Gold:" HorizontalAlignment="Left" Margin="18,49,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hitpoints:" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top"/>
-        <Label Content="Experience:" HorizontalAlignment="Left" Margin="18,80,0,0" VerticalAlignment="Top"/>
-        <Label Content="Level:" HorizontalAlignment="Left" Margin="18,111,0,0" VerticalAlignment="Top"/>
 
-        <Label x:Name="goldValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,49,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="hitpointsValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,18,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="experienceValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,80,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="levelValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,111,0,0" VerticalAlignment="Top"/>
-        
+        <!--<Label Content="Gold:" HorizontalAlignment="Left" Margin="18,46,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hitpoints:" HorizontalAlignment="Left" Margin="18,20,0,0" VerticalAlignment="Top"/>
+        <Label Content="Experience:" HorizontalAlignment="Left" Margin="18,74,0,0" VerticalAlignment="Top"/>
+        <Label Content="Level:" HorizontalAlignment="Left" Margin="18,100,0,0" VerticalAlignment="Top"/>
+
+        <Label x:Name="goldValueLabel" Content="0" HorizontalAlignment="Left" Margin="110,46,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="hitpointsValueLabel" Content="0" HorizontalAlignment="Left" Margin="110,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="experienceValueLabel" Content="0" HorizontalAlignment="Left" Margin="110,73,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="levelValueLabel" Content="0" HorizontalAlignment="Left" Margin="110,99,0,0" VerticalAlignment="Top"/>
+
         <Button x:Name="button" Content="Click" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Select action" HorizontalAlignment="Left" Margin="617,529,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboWeapons" HorizontalAlignment="Left" Margin="369,559,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cboPotions" HorizontalAlignment="Left" Margin="369,593,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnUseWeapon" Content="Use" HorizontalAlignment="Left" Margin="620,559,0,0" VerticalAlignment="Top" Width="75" Click="btnUseWeapon_Click"/>
+        <Button x:Name="btnUsePotion" Content="Use" HorizontalAlignment="Left" Margin="620,593,0,0" VerticalAlignment="Top" Width="75" Click="btnUsePotion_Click"/>
+        <Button x:Name="btnNorth" Content="North" HorizontalAlignment="Left" Margin="493,433,0,0" VerticalAlignment="Top" Width="75" Click="btnNorth_Click"/>
+        <Button x:Name="btnEast" Content="East" HorizontalAlignment="Left" Margin="573,459,0,0" VerticalAlignment="Top" Width="75" Click="btnEast_Click"/>
+        <Button x:Name="btnSouth" Content="South" HorizontalAlignment="Left" Margin="493,487,0,0" VerticalAlignment="Top" Width="75" Click="btnSouth_Click"/>
+        <Button x:Name="btnWest" Content="West" HorizontalAlignment="Left" Margin="412,459,0,0" VerticalAlignment="Top" Width="75" Click="btnWest_Click"/>
+        <RichTextBox x:Name="rtbLocation" HorizontalAlignment="Left" Height="105" Margin="347,19,0,0" VerticalAlignment="Top" Width="360" IsReadOnly="True">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox x:Name="rtbMessages" HorizontalAlignment="Left" Height="286" Margin="347,130,0,0" VerticalAlignment="Top" Width="360">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <DataGrid x:Name="dgvInventory" HorizontalAlignment="Left" Height="309" Margin="16,130,0,0" VerticalAlignment="Top" Width="312" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsEnabled="False" HeadersVisibility="None"/>
+        <DataGrid x:Name="dgvQuests" HorizontalAlignment="Left" Height="189" Margin="16,446,0,0" VerticalAlignment="Top" Width="312" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsEnabled="False" HeadersVisibility="None"/>-->
+    
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="225"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Menu" Background="AliceBlue" />
+        <Grid Grid.Row="1" Grid.Column="0" Background="Aquamarine">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Name: " />
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding CurrentPlayer.Name}" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Class:" />
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPlayer.CharacterClass}" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Hit Points:" />
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding CurrentPlayer.HitPoints}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Gold:" />
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding CurrentPlayer.Gold}" />
+            <Label Grid.Row="4" Grid.Column="0" Content="XP:" />
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding CurrentPlayer.ExperiencePoints}" />
+            <Label Grid.Row="5" Grid.Column="0" Content="Level:" />
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Level}" />
+        </Grid>
+        <Label Grid.Row="1" Grid.Column="1" Content="Game Data" Background="Beige" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="BurlyWood" />
+        <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement Controls" />
+
     </Grid>
 </Window>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleRPG
+namespace Engine.Models
 {
     public class HealingPotion : Item
     {
