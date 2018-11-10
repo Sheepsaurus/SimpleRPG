@@ -24,12 +24,8 @@ namespace SimpleRPG
             DataContext = gameSession;
             InitializeComponent();
 
-
-
             MoveTo(World.LocationByID(World.LOCATION_ID_HOME));
             gameSession.CurrentPlayer.Inventory.Add(new InventoryItem(World.ItemByID(World.ITEM_ID_RUSTY_SWORD), 1));
-
-            UpdateUserInfo();
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -108,7 +104,7 @@ namespace SimpleRPG
                     AddNewLine();
 
                     // Add the quest to the CurrentPlayer's quest list
-                    gameSession.CurrentPlayer.Quests.Add(new CurrentPlayerQuest(newLocation.QuestAvailableHere));
+                    gameSession.CurrentPlayer.Quests.Add(new PlayerQuest(newLocation.QuestAvailableHere));
                 }
             }
 
@@ -201,7 +197,6 @@ namespace SimpleRPG
                 }
 
                 // Refresh CurrentPlayer information and inventory controls
-                UpdateUserInfo();
                 UpdateNotQuest();
 
 
@@ -219,14 +214,11 @@ namespace SimpleRPG
                 int damageToCurrentPlayer = RandomNumberGenerator.NumberBetween(0, currentMonster.MaximumDamage);
 
                 // Display message
-                rtbMessages.Document.Blocks.Add(new Paragraph(new Run("The " + currentMonster.Name + " did " + damageTogameSession.CurrentPlayer.ToString() + " points of damage." + Environment.NewLine)));
+                rtbMessages.Document.Blocks.Add(new Paragraph(new Run("The " + currentMonster.Name + " did " + damageToCurrentPlayer.ToString() + " points of damage." + Environment.NewLine)));
 
                 // Subtract damage from CurrentPlayer
                 gameSession.CurrentPlayer.HitPoints -= damageToCurrentPlayer;
-
-                // Refresh CurrentPlayer data in UI
-                hitpointsValueLabel.Content = gameSession.CurrentPlayer.HitPoints.ToString();
-
+                
                 if (gameSession.CurrentPlayer.HitPoints <= 0)
                 {
                     // Display message
@@ -271,7 +263,7 @@ namespace SimpleRPG
             int damageToCurrentPlayer = RandomNumberGenerator.NumberBetween(0, currentMonster.MaximumDamage);
 
             // Display message
-            rtbMessages.Document.Blocks.Add(new Paragraph(new Run("The " + currentMonster.Name + " did " + damageTogameSession.CurrentPlayer.ToString() + " points of damage." + Environment.NewLine)));
+            rtbMessages.Document.Blocks.Add(new Paragraph(new Run("The " + currentMonster.Name + " did " + damageToCurrentPlayer.ToString() + " points of damage." + Environment.NewLine)));
 
             // Subtract damage from CurrentPlayer
             gameSession.CurrentPlayer.HitPoints -= damageToCurrentPlayer;
@@ -286,53 +278,52 @@ namespace SimpleRPG
             }
 
             // Refresh CurrentPlayer data in UI
-            hitpointsValueLabel.Content = gameSession.CurrentPlayer.HitPoints.ToString();
             UpdateInventoryListInUI();
             UpdatePotionListInUI();
         }
 
         private void UpdateInventoryListInUI()
         {
-            dgvInventory.HeadersVisibility = DataGridHeadersVisibility.None;
+            dgInventory.HeadersVisibility = DataGridHeadersVisibility.None;
 
-            dgvInventory.Columns.Add(new DataGridTextColumn
+            dgInventory.Columns.Add(new DataGridTextColumn
             {
                 Header = "Name",
                 Width = 197,
             });
-            dgvInventory.Columns.Add(new DataGridTextColumn
+            dgInventory.Columns.Add(new DataGridTextColumn
             {
                 Header = "Quantity"
             });
 
-            dgvInventory.Items.Clear();
+            dgInventory.Items.Clear();
 
             foreach (InventoryItem inventoryItem in gameSession.CurrentPlayer.Inventory)
             {
                 if (inventoryItem.Quantity > 0)
                 {
-                    dgvInventory.Items.Add(new[] { inventoryItem.Details.Name, inventoryItem.Quantity.ToString() });
+                    dgInventory.Items.Add(new[] { inventoryItem.Details.Name, inventoryItem.Quantity.ToString() });
                 }
             }
         }
 
         private void UpdateQuestListInUI()
         {
-            dgvQuests.HeadersVisibility = DataGridHeadersVisibility.None;
+            dgQuests.HeadersVisibility = DataGridHeadersVisibility.None;
 
-            dgvQuests.Columns.Add(new DataGridTextColumn
+            dgQuests.Columns.Add(new DataGridTextColumn
             {
                 Header = "Name",
                 Width = 197,
             });
-            dgvQuests.Columns.Add(new DataGridTextColumn
+            dgQuests.Columns.Add(new DataGridTextColumn
             {
                 Header = "Done?"
             });
 
-            foreach (CurrentPlayerQuest CurrentPlayerQuest in gameSession.CurrentPlayer.Quests)
+            foreach (PlayerQuest CurrentPlayerQuest in gameSession.CurrentPlayer.Quests)
             {
-                dgvQuests.Items.Add(new[] { CurrentPlayerQuest.Details.Name, CurrentPlayerQuest.IsCompleted.ToString() });
+                dgQuests.Items.Add(new[] { CurrentPlayerQuest.Details.Name, CurrentPlayerQuest.IsCompleted.ToString() });
             }
         }
 
@@ -396,14 +387,6 @@ namespace SimpleRPG
 
                 cboPotions.SelectedIndex = 0;
             }
-        }
-
-        private void UpdateUserInfo()
-        {
-            hitpointsValueLabel.Content = gameSession.CurrentPlayer.HitPoints.ToString();
-            goldValueLabel.Content = gameSession.CurrentPlayer.Gold.ToString();
-            experienceValueLabel.Content = gameSession.CurrentPlayer.ExperiencePoints.ToString();
-            levelValueLabel.Content = gameSession.CurrentPlayer.Level.ToString();
         }
 
         private void UpdateNotQuest()

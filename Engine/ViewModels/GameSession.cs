@@ -9,7 +9,7 @@ namespace Engine.ViewModels
         public GameSession ()
         {
             //CurrentPlayer = new Player(10, 10, 20, 0, 1);
-            CurrentPlayer = new Player();
+            CurrentPlayer = new Player(10, 10, 100000, 0, 1, "Assassin");
             CurrentPlayer.Name = "Alexander";
             CurrentPlayer.CharacterClass = "Assassin";
             CurrentPlayer.HitPoints = 10;

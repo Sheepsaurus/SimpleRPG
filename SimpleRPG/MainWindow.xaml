@@ -43,8 +43,8 @@
         </RichTextBox>
         <DataGrid x:Name="dgvInventory" HorizontalAlignment="Left" Height="309" Margin="16,130,0,0" VerticalAlignment="Top" Width="312" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsEnabled="False" HeadersVisibility="None"/>
         <DataGrid x:Name="dgvQuests" HorizontalAlignment="Left" Height="189" Margin="16,446,0,0" VerticalAlignment="Top" Width="312" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsEnabled="False" HeadersVisibility="None"/>-->
-    
-        
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -85,9 +85,33 @@
             <Label Grid.Row="5" Grid.Column="0" Content="Level:" />
             <Label Grid.Row="5" Grid.Column="1" Content="{Binding CurrentPlayer.Level}" />
         </Grid>
-        <Label Grid.Row="1" Grid.Column="1" Content="Game Data" Background="Beige" />
+        <RichTextBox x:Name="rtbMessages" Grid.Row="1" Grid.Column="1" Background="Beige">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Game Data"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox x:Name="rtbLocation" Grid.Row="2" Grid.Column="0" Background="Beige">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <DataGrid x:Name="dgInventory" />
+        <DataGrid x:Name="dgQuests" />
         <Label Grid.Row="2" Grid.Column="0" Content="Inventory/Quests" Background="BurlyWood" />
-        <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement Controls" />
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Label Grid.Row="2" Grid.Column="1" Content="Combat/Movement Controls" />
+            <Button Content="btnUseWeapon" Width="75"/>
+            <Button Content="btnUsePotion" Width="75"/>
+            <Button Content="btnNorth" Width="75"/>
+            <Button Content="btnEast" Width="75"/>
+            <Button Content="btnSouth" Width="75"/>
+            <Button Content="btnWest" Width="75"/>
+        </Grid>
+
 
     </Grid>
 </Window>
