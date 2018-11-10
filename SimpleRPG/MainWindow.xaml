@@ -1,12 +1,22 @@
-﻿<Window x:Class="SimpleRPG.MainWindow"
+﻿<Window x:Name="Adventure_Game" x:Class="SimpleRPG.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleRPG"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Adventure Game" Height="686" Width="735">
     <Grid>
+        <Label Content="Gold:" HorizontalAlignment="Left" Margin="18,49,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hitpoints:" HorizontalAlignment="Left" Margin="18,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="Experience:" HorizontalAlignment="Left" Margin="18,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Level:" HorizontalAlignment="Left" Margin="18,111,0,0" VerticalAlignment="Top"/>
+
+        <Label x:Name="goldValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,49,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="hitpointsValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="experienceValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,80,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="levelValueLabel" Content="0" HorizontalAlignment="Left" Margin="92,111,0,0" VerticalAlignment="Top"/>
         
+        <Button x:Name="button" Content="Click" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
